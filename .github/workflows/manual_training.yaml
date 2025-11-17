@@ -1,0 +1,92 @@
+name: Manual Training
+
+on:
+    workflow_dispatch:
+        inputs:
+            reason:
+                description: "Reason for manual training"
+                required: false
+                default: "Manual trigger"
+
+jobs:
+    train:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Cache pip dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/pip
+                  key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+
+            - name: Prepare data
+              run: |
+                  echo "Running data preparation..."
+                  python src/prepare_data.py
+
+            - name: Generate timestamp
+              id: timestamp
+              run: |
+                  timestamp=$(date '+%Y%m%d_%H%M%S')
+                  echo "timestamp=$timestamp" >> $GITHUB_OUTPUT
+
+            - name: Train model
+              run: |
+                  echo "Training classification model..."
+                  echo "Reason: ${{ github.event.inputs.reason }}"
+                  python src/train_classifier.py
+
+            - name: Upload model as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: manual-trained-model-${{ steps.timestamp.outputs.timestamp }}
+                  path: |
+                      models/model_*.joblib
+                      models/vectorizer_*.joblib
+                      models/metadata_*.json
+                  retention-days: 90
+
+            - name: Commit metrics
+              run: |
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --global user.name "github-actions[bot]"
+
+                  git add metrics/*.json
+
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                  else
+                    git commit -m "Manual training: ${{ github.event.inputs.reason }} [skip ci]"
+                    git push
+                  fi
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Training summary
+              run: |
+                  echo "### Manual Training Complete" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Reason**: ${{ github.event.inputs.reason }}" >> $GITHUB_STEP_SUMMARY
+                  echo "**Timestamp**: ${{ steps.timestamp.outputs.timestamp }}" >> $GITHUB_STEP_SUMMARY
+
+                  if [ -f metrics/training_metrics_*.json ]; then
+                    latest_metrics=$(ls -t metrics/training_metrics_*.json | head -1)
+                    echo "" >> $GITHUB_STEP_SUMMARY
+                    echo "**Performance**:" >> $GITHUB_STEP_SUMMARY
+                    echo '```json' >> $GITHUB_STEP_SUMMARY
+                    cat $latest_metrics >> $GITHUB_STEP_SUMMARY
+                    echo '```' >> $GITHUB_STEP_SUMMARY
+                  fi

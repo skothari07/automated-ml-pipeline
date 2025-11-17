@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+venv/
+env/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# GCP credentials
+gcp-key.json
+*.json
+
+# Models (stored in GCS)
+models/*.joblib
+
+# Temporary
+*.log
+*.tmp
+
+data/*.csv

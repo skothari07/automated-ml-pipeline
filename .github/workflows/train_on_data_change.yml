@@ -1,0 +1,110 @@
+name: Train Model on Data Change
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "data/support_tickets.csv"
+
+jobs:
+    train:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Get pip cache directory
+              id: pip-cache-dir
+              run: echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
+
+            - name: Cache pip dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.pip-cache-dir.outputs.dir }}
+                  key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pip-
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+
+            - name: Verify data file exists
+              run: |
+                  if [ -f data/support_tickets.csv ]; then
+                    echo "Data file found"
+                    echo "Number of records: $(wc -l < data/support_tickets.csv)"
+                  else
+                    echo "Error: Data file not found"
+                    exit 1
+                  fi
+
+            - name: Prepare data
+              run: |
+                  echo "Running data preparation..."
+                  python src/prepare_data.py
+
+            - name: Generate timestamp
+              id: timestamp
+              run: |
+                  timestamp=$(date '+%Y%m%d_%H%M%S')
+                  echo "timestamp=$timestamp" >> $GITHUB_OUTPUT
+                  echo "Training timestamp: $timestamp"
+
+            - name: Train model
+              run: |
+                  echo "Training classification model..."
+                  python src/train_classifier.py
+
+            - name: Upload model as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: trained-model-${{ steps.timestamp.outputs.timestamp }}
+                  path: |
+                      models/model_*.joblib
+                      models/vectorizer_*.joblib
+                      models/metadata_*.json
+                  retention-days: 90
+
+            - name: Commit metrics
+              run: |
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --global user.name "github-actions[bot]"
+
+                  git add metrics/*.json
+
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                  else
+                    git commit -m "Update training metrics [skip ci]"
+                    git push
+                  fi
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create training summary
+              run: |
+                  echo "### Training Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Status**: ✅ Successfully completed" >> $GITHUB_STEP_SUMMARY
+                  echo "**Timestamp**: ${{ steps.timestamp.outputs.timestamp }}" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+
+                  if [ -f metrics/training_metrics_*.json ]; then
+                    latest_metrics=$(ls -t metrics/training_metrics_*.json | head -1)
+                    echo "**Metrics**:" >> $GITHUB_STEP_SUMMARY
+                    echo '```json' >> $GITHUB_STEP_SUMMARY
+                    cat $latest_metrics >> $GITHUB_STEP_SUMMARY
+                    echo '```' >> $GITHUB_STEP_SUMMARY
+                  fi
+
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Artifacts**: Model stored for 90 days" >> $GITHUB_STEP_SUMMARY
