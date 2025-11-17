@@ -1,0 +1,51 @@
+ticket_id,category,description,priority,description_clean,description_processed
+1,connectivity,My internet connection keeps dropping every few minutes,high,my internet connection keeps dropping every few minutes,internet connection keep dropping every minute
+2,billing,I was charged twice for my monthly subscription,medium,i was charged twice for my monthly subscription,charged twice monthly subscription
+3,hardware,My laptop keyboard is not working properly,high,my laptop keyboard is not working properly,laptop keyboard working properly
+4,software,The application crashes when I try to save files,medium,the application crashes when i try to save files,application crash try save file
+5,connectivity,Unable to connect to WiFi network,high,unable to connect to wifi network,unable connect wifi network
+6,billing,Need clarification on my last invoice,low,need clarification on my last invoice,need clarification last invoice
+7,hardware,Monitor screen is flickering constantly,medium,monitor screen is flickering constantly,monitor screen flickering constantly
+8,software,Software update failed to install,low,software update failed to install,software update failed install
+9,connectivity,Network speed is very slow today,medium,network speed is very slow today,network speed slow today
+10,billing,Want to upgrade my service plan,low,want to upgrade my service plan,want upgrade service plan
+11,hardware,Computer won't turn on at all,high,computer wont turn on at all,computer wont turn
+12,software,Cannot login to my account,high,cannot login to my account,login account
+13,connectivity,WiFi disconnects frequently throughout the day,high,wifi disconnects frequently throughout the day,wifi disconnect frequently throughout day
+14,billing,Received incorrect billing amount,medium,received incorrect billing amount,received incorrect billing amount
+15,hardware,USB ports are not functioning,medium,usb ports are not functioning,usb port functioning
+16,software,Application is running very slowly,low,application is running very slowly,application running slowly
+17,connectivity,Internet connection not working at all,high,internet connection not working at all,internet connection working
+18,billing,Need help understanding my charges,low,need help understanding my charges,need help understanding charge
+19,hardware,Printer is not responding to commands,medium,printer is not responding to commands,printer responding command
+20,software,Error message appears on startup,medium,error message appears on startup,error message appears startup
+21,connectivity,Can't access company VPN,high,cant access company vpn,cant access company vpn
+22,billing,Want to cancel my subscription,low,want to cancel my subscription,want cancel subscription
+23,hardware,Mouse cursor is lagging badly,low,mouse cursor is lagging badly,mouse cursor lagging badly
+24,software,Files are not syncing properly,medium,files are not syncing properly,file syncing properly
+25,connectivity,Ethernet cable connection issues,medium,ethernet cable connection issues,ethernet cable connection issue
+26,billing,Duplicate charge on credit card,high,duplicate charge on credit card,duplicate charge credit card
+27,hardware,Headset microphone not working,medium,headset microphone not working,headset microphone working
+28,software,Program freezes during operation,medium,program freezes during operation,program freeze operation
+29,connectivity,Router keeps resetting automatically,high,router keeps resetting automatically,router keep resetting automatically
+30,billing,Missing transaction in account history,medium,missing transaction in account history,missing transaction account history
+31,hardware,External hard drive not detected,medium,external hard drive not detected,external hard drive detected
+32,software,Unable to update application settings,low,unable to update application settings,unable update application setting
+33,connectivity,Weak signal strength in office,medium,weak signal strength in office,weak signal strength office
+34,billing,Payment method needs updating,low,payment method needs updating,payment method need updating
+35,hardware,Battery drains very quickly,medium,battery drains very quickly,battery drain quickly
+36,software,Permission denied error message,medium,permission denied error message,permission denied error message
+37,connectivity,DNS server not responding,high,dns server not responding,dns server responding
+38,billing,Refund request for overcharge,medium,refund request for overcharge,refund request overcharge
+39,hardware,Screen shows black patches,high,screen shows black patches,screen show black patch
+40,software,Installation wizard not completing,low,installation wizard not completing,installation wizard completing
+41,connectivity,Cannot access certain websites,medium,cannot access certain websites,access certain website
+42,billing,Need itemized billing statement,low,need itemized billing statement,need itemized billing statement
+43,hardware,Fan making loud noise,medium,fan making loud noise,fan making loud noise
+44,software,Data export function broken,medium,data export function broken,data export function broken
+45,connectivity,Mobile hotspot not connecting,medium,mobile hotspot not connecting,mobile hotspot connecting
+46,billing,Promo code not working,low,promo code not working,promo code working
+47,hardware,Touchpad gestures not working,low,touchpad gestures not working,touchpad gesture working
+48,software,Backup process failing,medium,backup process failing,backup process failing
+49,connectivity,Intermittent packet loss detected,high,intermittent packet loss detected,intermittent packet loss detected
+50,billing,Annual plan renewal confusion,low,annual plan renewal confusion,annual plan renewal confusion

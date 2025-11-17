@@ -22,5 +22,3 @@ models/*.joblib
 # Temporary
 *.log
 *.tmp
-
-data/*.csv

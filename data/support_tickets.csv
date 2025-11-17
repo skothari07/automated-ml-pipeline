@@ -1,0 +1,51 @@
+ticket_id,category,description,priority
+1,connectivity,My internet connection keeps dropping every few minutes,high
+2,billing,I was charged twice for my monthly subscription,medium
+3,hardware,My laptop keyboard is not working properly,high
+4,software,The application crashes when I try to save files,medium
+5,connectivity,Unable to connect to WiFi network,high
+6,billing,Need clarification on my last invoice,low
+7,hardware,Monitor screen is flickering constantly,medium
+8,software,Software update failed to install,low
+9,connectivity,Network speed is very slow today,medium
+10,billing,Want to upgrade my service plan,low
+11,hardware,Computer won't turn on at all,high
+12,software,Cannot login to my account,high
+13,connectivity,WiFi disconnects frequently throughout the day,high
+14,billing,Received incorrect billing amount,medium
+15,hardware,USB ports are not functioning,medium
+16,software,Application is running very slowly,low
+17,connectivity,Internet connection not working at all,high
+18,billing,Need help understanding my charges,low
+19,hardware,Printer is not responding to commands,medium
+20,software,Error message appears on startup,medium
+21,connectivity,Can't access company VPN,high
+22,billing,Want to cancel my subscription,low
+23,hardware,Mouse cursor is lagging badly,low
+24,software,Files are not syncing properly,medium
+25,connectivity,Ethernet cable connection issues,medium
+26,billing,Duplicate charge on credit card,high
+27,hardware,Headset microphone not working,medium
+28,software,Program freezes during operation,medium
+29,connectivity,Router keeps resetting automatically,high
+30,billing,Missing transaction in account history,medium
+31,hardware,External hard drive not detected,medium
+32,software,Unable to update application settings,low
+33,connectivity,Weak signal strength in office,medium
+34,billing,Payment method needs updating,low
+35,hardware,Battery drains very quickly,medium
+36,software,Permission denied error message,medium
+37,connectivity,DNS server not responding,high
+38,billing,Refund request for overcharge,medium
+39,hardware,Screen shows black patches,high
+40,software,Installation wizard not completing,low
+41,connectivity,Cannot access certain websites,medium
+42,billing,Need itemized billing statement,low
+43,hardware,Fan making loud noise,medium
+44,software,Data export function broken,medium
+45,connectivity,Mobile hotspot not connecting,medium
+46,billing,Promo code not working,low
+47,hardware,Touchpad gestures not working,low
+48,software,Backup process failing,medium
+49,connectivity,Intermittent packet loss detected,high
+50,billing,Annual plan renewal confusion,low51,connectivity,VPN not working,high
