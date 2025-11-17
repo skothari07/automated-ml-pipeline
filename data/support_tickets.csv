@@ -49,3 +49,4 @@ ticket_id,category,description,priority
 48,software,Backup process failing,medium
 49,connectivity,Intermittent packet loss detected,high
 50,billing,Annual plan renewal confusion,low
+51,connectivity,VPN connection timeout issue,high

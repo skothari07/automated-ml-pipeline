@@ -1,0 +1,10 @@
+{
+  "timestamp": "20251117_145355",
+  "model_path": "models/model_20251117_145355.joblib",
+  "vectorizer_path": "models/vectorizer_20251117_145355.joblib",
+  "metrics_path": "metrics/training_metrics_20251117_145355.json",
+  "model_type": "RandomForestClassifier",
+  "n_estimators": 100,
+  "feature_extractor": "TfidfVectorizer",
+  "max_features": 500
+}
