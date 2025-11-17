@@ -12,11 +12,7 @@ env/
 *.swp
 .DS_Store
 
-# GCP credentials
-gcp-key.json
-*.json
-
-# Models (stored in GCS)
+# Models (stored as artifacts, not in Git)
 models/*.joblib
 
 # Temporary
