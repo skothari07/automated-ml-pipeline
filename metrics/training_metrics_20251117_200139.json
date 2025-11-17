@@ -1,0 +1,9 @@
+{
+  "timestamp": "20251117_200139",
+  "training_samples": 40,
+  "test_samples": 11,
+  "accuracy": 0.45454545454545453,
+  "f1_score_weighted": 0.4090909090909091,
+  "precision_weighted": 0.6363636363636364,
+  "recall_weighted": 0.45454545454545453
+}
